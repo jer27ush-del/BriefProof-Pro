@@ -1,0 +1,492 @@
+# MASTER BUILD PROMPT — BRIEFPROOF
+## Build a professional AI-native creator marketplace in 18 hours
+
+Act as a senior full-stack engineer, product designer, UX researcher, security engineer, and QA specialist. Build a complete, polished, responsive web application named **BriefProof**.
+
+Do not merely explain how to build it. Work directly in the project files, install dependencies, implement the application, run it, test it, and fix errors. Make sensible decisions independently rather than stopping for approval at every step.
+
+## 1. Product vision
+
+**Product name:** BriefProof  
+**Tagline:** Hire AI creators based on proof, not promises.
+
+BriefProof is a marketplace connecting brands and agencies with AI filmmakers, AI animators, and generative content creators.
+
+Traditional portfolios show attractive outputs but often fail to demonstrate whether a creator can follow a particular brief, maintain brand consistency, document production workflows, or explain commercial-use considerations.
+
+BriefProof helps brands:
+- Turn rough ideas into structured creative briefs using an LLM.
+- Discover creators whose portfolios match a campaign's visual direction.
+- Compare creators using a consistent evaluation rubric.
+- Assess campaign assets for potential brand inconsistencies.
+- Review creator-provided production and licensing information.
+- Convert approved briefs into project milestones and acceptance criteria.
+
+The product must feel like a credible creative technology startup, not a generic AI-generated template.
+
+## 2. Technology stack
+
+Use these technologies unless the existing project requires a compatible alternative:
+
+- Next.js with App Router.
+- TypeScript with strict type checking.
+- Tailwind CSS.
+- Reusable, well-organized React components.
+- Supabase Auth for real email/password authentication.
+- Supabase PostgreSQL for persistent application data.
+- Supabase Row Level Security (RLS) for user-owned data.
+- Official OpenAI JavaScript/TypeScript SDK for LLM features.
+- Zod for validating API inputs and structured outputs.
+- React Hook Form where useful.
+- Lucide icons.
+- A suitable image optimization strategy for creator and project imagery.
+- Vercel-compatible deployment configuration.
+
+Use stable, compatible package versions. Do not introduce unnecessary libraries or experimental dependencies.
+
+## 3. Required pages and routes
+
+Build **five main product pages**, with authentication and recovery routes as supporting pages.
+
+### Page 1 — Landing page: `/`
+
+Create a premium, editorial-quality landing page.
+
+Include:
+- A distinctive BriefProof wordmark and custom brand identity.
+- A polished navigation bar with Discover, How It Works, Sign In, and Get Started.
+- A strong headline: “Great creative work deserves better proof.”
+- Supporting copy explaining the marketplace's value.
+- Primary CTA: “Find your creative match.”
+- Secondary CTA: “Build a campaign brief.”
+- A beautiful visual section showing creator work, campaign references, and a brief-to-creator matching concept.
+- Three concise value propositions: Better Matching, Verifiable Workflow, Clearer Delivery.
+- A featured creator section with real-looking fictional sample profiles.
+- A clear three-step workflow.
+- A section explaining Creative DNA matching and Proof-of-Brief evaluation.
+- A final conversion section and polished footer.
+
+Avoid generic AI landing page patterns such as excessive gradients, glowing blobs, floating glass cards, meaningless statistics, or repetitive rounded rectangles.
+
+Use intentional composition, excellent typography, realistic copy, and generous whitespace.
+
+### Page 2 — Creator discovery: `/discover`
+
+This is one of the most important pages. Make it look and behave like a premium creative talent marketplace.
+
+Include:
+- Search by creator name, creative specialty, tools, or visual style.
+- Filters for category, budget, availability, experience, and style.
+- Sort options for relevance, budget, and experience.
+- A reference-style search area where the user can describe a visual direction or upload a reference image.
+- Creator cards featuring a portrait, specialty, short biography, creative styles, tools, starting price, availability, portfolio samples, and a “View profile” action.
+- Save/bookmark functionality for authenticated users.
+- A comparison shortlist.
+- Clear loading, empty, error, and success states.
+
+Use approximately eight polished fictional creators with diverse creative specialties. Clearly identify the content as sample creator data; do not invent real reviews, verified clients, or credentials.
+
+Creator cards should emphasize actual work samples and useful information rather than oversized rating badges.
+
+### Page 3 — Creator profile: `/creators/[id]`
+
+Create a complete creator profile page with dynamic data.
+
+Include:
+- Profile image, name, specialty, biography, and availability.
+- Portfolio gallery with appropriate imagery.
+- Creative styles and preferred industries.
+- Tools and models the creator reports using.
+- Example project descriptions and deliverables.
+- Indicative pricing and typical turnaround.
+- Workflow documentation and licensing information supplied by the creator.
+- A “Save creator” action.
+- A “Compare creator” action.
+- A “Start a project” action that takes the brand to the brief builder with the creator preselected.
+
+Include a clear visual hierarchy between portfolio work, capabilities, workflow information, and commercial details.
+
+Do not display unverified claims as independently certified facts.
+
+### Page 4 — AI brief builder: `/brief/new`
+
+This is the central LLM-powered feature.
+
+Build a guided, multi-step brief creation experience.
+
+Step 1: Campaign idea
+- Campaign name.
+- Brand and product.
+- Rough creative idea.
+- Target audience.
+- Campaign objective.
+
+Step 2: Creative direction
+- Preferred visual style.
+- Reference images or mood-board uploads.
+- Platforms and aspect ratios.
+- Tone and mood.
+- Brand guidelines.
+
+Step 3: Deliverables and constraints
+- Video, animation, still images, or other content.
+- Required duration and formats.
+- Budget in INR.
+- Deadline.
+- Revision rounds.
+- Commercial usage requirements.
+
+Step 4: AI-generated brief
+Use the OpenAI API to transform the user's rough idea into a structured, editable brief.
+
+The AI should identify:
+- Campaign objective.
+- Target audience.
+- Creative concept.
+- Visual direction.
+- Deliverables and specifications.
+- Brand constraints.
+- Production considerations.
+- Timeline and milestones.
+- Acceptance criteria.
+- Missing information and follow-up questions.
+- Commercial-use information that requires confirmation.
+
+Let the user edit every generated section, return to previous steps, regenerate selected sections, and save the brief.
+
+Provide a visible loading state while the model responds. Handle API failures gracefully.
+
+The brief builder must use the real LLM when configured. Do not simulate a successful AI response when the API call has failed.
+
+### Page 5 — Brand dashboard and campaign workspace: `/dashboard`
+
+Build a professional, authenticated dashboard with a campaign overview.
+
+Include:
+- Welcome message and account menu.
+- Campaign summary.
+- Draft briefs and saved creators.
+- Recent campaign activity.
+- Campaign statuses such as Draft, In Review, In Progress, and Completed.
+- A campaign detail view with the selected creator, approved brief, deliverables, milestones, revision rounds, and acceptance checklist.
+- A creator comparison view with consistent evaluation criteria.
+- A Brand Consistency Test section.
+- A LicenseGuard section.
+- A milestone generator.
+- Ability to open, edit, save, and delete the user's own briefs and campaigns where appropriate.
+
+**Brand Consistency Test:** Allow users to upload reference and campaign images, then review potential differences in product appearance, packaging, colors, composition, or logo placement. Use a real vision-capable model if configured. Clearly explain that AI observations may be incorrect and require human review. Never claim exact visual verification unless the implementation genuinely performs it.
+
+**LicenseGuard:** Present a structured checklist covering creator-reported tools and models, source assets, music, fonts, stock material, consent where relevant, intended commercial usage, and missing documentation. Use the LLM to summarize provided information and flag items requiring attention. Clearly state that this is decision support, not legal advice or a legal clearance guarantee.
+
+**Milestone generator:** Use the brief to propose milestones, dates, deliverables, revision limits, and acceptance criteria. Let the user edit and save them.
+
+If time is limited, prioritize a working brief-to-campaign journey over implementing elaborate analytics.
+
+## 4. Authentication must be real
+
+Implement proper Supabase Auth integration.
+
+Required supporting routes:
+- `/login`
+- `/signup`
+- `/forgot-password`
+- An email confirmation/callback route as required by the chosen Supabase setup.
+
+Requirements:
+- Email/password registration.
+- Login with email/password.
+- Email verification.
+- Password reset.
+- Persistent authenticated sessions.
+- Logout.
+- Useful validation and error messages.
+- Password visibility toggle.
+- Protected dashboard and campaign routes.
+- Redirect unauthenticated users to login.
+- Redirect authenticated users away from login and signup where appropriate.
+- Never use a hardcoded username/password as the actual authentication system.
+- Never store plaintext passwords.
+- Never trust client-side route hiding as the only authorization mechanism.
+
+A user must only be able to read, update, or delete their own private briefs, saved creators, and campaigns.
+
+Configure appropriate Supabase RLS policies and enforce authorization in server-side data access.
+
+Provide database migrations or a complete SQL setup file. Include a clear README explaining how to configure Supabase, enable email authentication, and test registration and password recovery.
+
+## 5. LLM API integration
+
+Use the official OpenAI API through server-side Next.js route handlers.
+
+Implement an organized LLM service with separate functions for:
+- `generateBrief`
+- `generateFollowUpQuestions`
+- `matchCreators`
+- `evaluateCreatorAgainstBrief`
+- `generateMilestones`
+- `analyzeBrandConsistency`
+- `reviewLicenseChecklist`
+
+Use structured, validated outputs wherever possible. Validate responses with Zod and handle malformed responses safely.
+
+The creator matching feature should compare:
+- Creative style.
+- Portfolio evidence.
+- Relevant capabilities.
+- Budget compatibility.
+- Availability.
+- Required deliverables.
+- Tool or workflow requirements.
+
+Return ranked matches with concise explanations tied to the creator's actual profile data. Do not let the model invent creators, portfolio evidence, or qualifications.
+
+Use this server-side environment variable:
+
+`OPENAI_API_KEY=your_key_here`
+
+Use a configurable model environment variable such as:
+
+`OPENAI_MODEL=your_supported_model_name`
+
+Choose a currently supported model compatible with the required text or vision task. Do not hardcode a guessed model name throughout the application.
+
+Never expose the secret API key through client components, browser requests, HTML, logs, public configuration, or variables prefixed with `NEXT_PUBLIC_`.
+
+Add:
+- Server-side input validation.
+- Request-size limits.
+- Reasonable rate limiting.
+- Timeouts and error handling.
+- Sensible token limits.
+- Safe logging without secrets or sensitive user content.
+- Clear user-facing messages when the API key is missing or usage limits are reached.
+
+If the LLM is not configured, the app should still load and allow users to explore sample creator profiles. Disable or clearly label AI-dependent actions and explain how to configure the feature. Do not silently substitute fake output for a failed API call.
+
+## 6. Database design
+
+Create a clear, maintainable database schema for:
+- User profiles.
+- Creator profiles.
+- Creator portfolio items.
+- Saved creators.
+- Creative briefs.
+- Campaigns.
+- Campaign milestones.
+- Creator comparisons or evaluations where needed.
+
+Use proper primary keys, foreign keys, timestamps, constraints, and ownership relationships.
+
+Seed approximately eight fictional creator profiles and their portfolio metadata for the demo.
+
+Use realistic INR pricing and campaign examples. Mark seeded content as sample data. Never fabricate live marketplace activity, real customer testimonials, or verified commercial credentials.
+
+Use persistent Supabase data for user-owned records. Do not rely on localStorage as the primary database for private user information.
+
+## 7. Design direction: premium creative technology
+
+The website must feel like a serious, professionally art-directed startup.
+
+**Visual reference:** a blend of an editorial creative agency, a premium talent marketplace, and a modern professional SaaS application.
+
+Use:
+- Warm off-white or ivory page backgrounds.
+- Near-black typography.
+- A restrained deep-violet or cobalt accent.
+- Subtle borders and carefully controlled shadows.
+- Strong typographic contrast.
+- Editorial headlines and readable body copy.
+- Large, high-quality creator portfolio imagery.
+- A consistent spacing system.
+- Thoughtful empty states and micro-interactions.
+- Small-radius controls where appropriate instead of rounding everything.
+- Consistent navigation and button styling.
+
+Avoid:
+- The typical AI-generated purple gradient on every section.
+- Excessive glassmorphism.
+- Giant rounded cards everywhere.
+- Emoji used as interface icons.
+- Random decorative icons.
+- Fake statistics and fake testimonials.
+- Generic “Welcome to the future of AI” copy.
+- Excessive animations.
+- Repetitive page layouts.
+- Placeholder links.
+- Lorem ipsum.
+- Nonfunctional controls.
+
+Make the landing page expressive and editorial, discovery visual and information-rich, the brief builder focused and distraction-free, and the dashboard efficient and professional.
+
+Ensure responsive layouts for desktop, tablet, and mobile. Use accessible contrast, keyboard focus states, semantic HTML, and clear form labels.
+
+Use high-quality image assets with consistent art direction. Avoid broken image URLs and unrelated stock imagery. If an external image cannot load, provide a deliberate fallback.
+
+## 8. Main demo scenario
+
+Use this fictional campaign to demonstrate the complete workflow:
+
+**Brand:** Aurelle Skin  
+**Product:** Premium facial serum  
+**Campaign:** A 15-second cinematic Instagram Reel  
+**Budget:** ₹10,000  
+**Deadline:** Five days  
+**Revision rounds:** Two  
+**Creative direction:** Minimal luxury, warm lighting, premium textures, refined product close-ups  
+**Key constraint:** Maintain consistency with the supplied product packaging  
+**Usage requirement:** Commercial advertising; exact usage terms require confirmation
+
+Demo journey:
+
+1. A user registers and logs in.
+2. The user creates a campaign brief.
+3. The LLM turns the rough concept into a structured brief.
+4. The matching engine ranks suitable creators with explanations.
+5. The user opens creator profiles and compares shortlisted candidates.
+6. The user selects a creator and saves the campaign.
+7. The user reviews brand-consistency observations and LicenseGuard items.
+8. The milestone generator proposes an editable project schedule.
+9. The user returns to the dashboard and sees the saved campaign.
+
+Make this journey easy to demonstrate in approximately three minutes.
+
+## 9. Engineering standards
+
+Organize the project into understandable modules for:
+- App routes.
+- Shared UI components.
+- Authentication.
+- Database access.
+- LLM services.
+- Input validation.
+- Types and schemas.
+- Seed data.
+- Utility functions.
+
+Requirements:
+- Strict TypeScript wherever practical.
+- No unnecessary `any` types.
+- No giant single-file application.
+- No duplicated components when reusable components are appropriate.
+- No hardcoded secrets.
+- No fake authentication.
+- No critical feature that only works after a page refresh.
+- No buttons that appear functional but do nothing.
+- No dead links.
+- No console errors.
+- No broken imports.
+- No build-blocking TypeScript errors.
+- No unauthorized access to other users' records.
+
+Provide useful loading, error, success, empty, and disabled states. Validate forms on both the client and server.
+
+## 10. Required documentation
+
+Create:
+- `README.md` with setup and run instructions.
+- `.env.example` containing variable names and placeholders only.
+- Supabase schema/migration files.
+- Seed data instructions.
+- Authentication configuration instructions.
+- LLM API configuration instructions.
+- Deployment instructions.
+- A short list of implemented features and any remaining limitations.
+
+Ensure `.env.local` is ignored by Git. Never include a real API key in the repository.
+
+## 11. Eighteen-hour implementation plan
+
+Work in this order:
+
+**Hours 1–2: Foundation**
+- Inspect the project.
+- Establish the app structure.
+- Install dependencies.
+- Implement global design tokens, typography, navigation, and shared components.
+
+**Hours 3–5: Visual experience**
+- Build the landing page.
+- Build creator discovery and profile pages.
+- Add realistic sample data and portfolio imagery.
+- Check responsive behavior.
+
+**Hours 6–8: Authentication and database**
+- Configure Supabase clients.
+- Build signup, login, logout, email confirmation, and password reset.
+- Create schema, RLS policies, and data access.
+- Protect private routes.
+
+**Hours 9–11: AI brief builder**
+- Implement the guided form.
+- Connect the OpenAI SDK on the server.
+- Validate generated output.
+- Save and reload briefs from Supabase.
+
+**Hours 12–14: Marketplace workflow**
+- Implement creator matching and comparison.
+- Implement campaign saving and dashboard.
+- Add editable milestones and acceptance criteria.
+
+**Hours 15–16: Differentiating features**
+- Implement the Brand Consistency Test.
+- Implement LicenseGuard.
+- Ensure their limitations and review requirements are visible.
+
+**Hours 17–18: QA and polish**
+- Run linting and production build checks.
+- Fix errors.
+- Test signup, login, logout, and password reset.
+- Test access restrictions and user-owned data.
+- Test the real LLM integration.
+- Test the complete demo journey.
+- Fix responsive layout and visual inconsistencies.
+- Update the README.
+
+Adjust the order if a blocker requires it, but protect time for authentication, the brief workflow, and final testing.
+
+## 12. Final acceptance checklist
+
+Do not declare the project finished until you have checked the following:
+
+- [ ] The app runs locally using documented commands.
+- [ ] All five main pages work.
+- [ ] Creator profiles load from valid data.
+- [ ] Search, filters, and creator selection work.
+- [ ] A user can register, verify email, log in, and log out.
+- [ ] Password reset is implemented.
+- [ ] Private pages require authentication.
+- [ ] User data is protected by server-side authorization and RLS.
+- [ ] The LLM responds through the real server-side API integration.
+- [ ] AI-generated briefs can be edited and saved.
+- [ ] Briefs persist after refresh and a new login session.
+- [ ] Matching explanations are based on available creator data.
+- [ ] Campaign milestones can be generated and edited.
+- [ ] Brand and licensing features provide useful, honest feedback.
+- [ ] Missing API configuration is handled clearly.
+- [ ] Mobile and desktop layouts are usable.
+- [ ] No critical build errors or broken navigation remain.
+- [ ] Setup instructions are complete.
+- [ ] No secrets are committed to Git.
+
+## 13. How to work
+
+Start by inspecting the existing repository. Preserve useful existing work instead of blindly replacing it.
+
+Then implement the project end to end. Do not stop after generating a homepage, writing a plan, or producing a list of files.
+
+If a service needs credentials that I have not supplied, build the integration, document the required configuration, and continue with the other work. Do not fabricate successful authentication, database writes, or AI responses.
+
+If time becomes tight, prioritize this order:
+
+1. Professional design and responsive navigation.
+2. Real authentication and secure data ownership.
+3. Creator discovery and profiles.
+4. Real LLM-powered brief generation.
+5. Persistent campaign dashboard.
+6. Creator matching and milestone generation.
+7. Brand consistency and LicenseGuard enhancements.
+
+Keep the implementation focused on a convincing, functional hackathon product. Avoid unnecessary features that could prevent the core experience from being completed.
+
+**Begin by inspecting the repository and implementing the application now.**
